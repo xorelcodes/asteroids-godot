@@ -1,7 +1,6 @@
 extends Area2D
 
 @export var speed = 400
-@export var impulse_strength = 50
 
 var direction = Vector2.UP
 
