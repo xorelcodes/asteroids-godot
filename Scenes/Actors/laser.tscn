@@ -9,7 +9,7 @@ size = Vector2(2, 6)
 [node name="laser" type="Area2D" groups=["projectile"]]
 z_index = 5
 collision_layer = 2
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("1_01ec6")
 speed = 250
 
@@ -21,3 +21,4 @@ texture = ExtResource("2_ucysl")
 shape = SubResource("RectangleShape2D_oxjm6")
 
 [connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

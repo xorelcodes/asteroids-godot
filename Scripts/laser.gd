@@ -17,3 +17,10 @@ func _process(delta):
         
 func _on_area_shape_entered(area_rid:RID, area:Area2D, area_shape_index:int, local_shape_index:int):
     queue_free()
+
+
+func _on_body_entered(body:Node2D):
+    if(body.is_in_group("asteroid")):
+        body._destroyAsteroid()
+        body.queue_free()
+        queue_free()

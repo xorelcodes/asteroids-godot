@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://7dqy1jie8agx"]
+
+[ext_resource type="PackedScene" uid="uid://chm0nyqjmahhl" path="res://Scenes/Actors/asteroid.tscn" id="1_xcm1r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_810gw"]
+resource_local_to_scene = true
+radius = 16.0
+
+[node name="asteroid" instance=ExtResource("1_xcm1r")]
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_810gw")
