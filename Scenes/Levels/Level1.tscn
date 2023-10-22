@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtiukbse7ee56"]
+
+[ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_cp6x2"]
+[ext_resource type="PackedScene" uid="uid://vkb2hlb1byfa" path="res://Scenes/Backgrounds/bg1.tscn" id="1_rwdgr"]
+[ext_resource type="PackedScene" uid="uid://1uqkm6pusndk" path="res://Scenes/Actors/player.tscn" id="2_yd3ci"]
+[ext_resource type="PackedScene" uid="uid://chm0nyqjmahhl" path="res://Scenes/Actors/asteroid.tscn" id="3_l8s14"]
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_cp6x2")
+
+[node name="Level1bg" parent="." instance=ExtResource("1_rwdgr")]
+
+[node name="Player" parent="." instance=ExtResource("2_yd3ci")]
+position = Vector2(162, 152)
+
+[node name="asteroid" parent="." instance=ExtResource("3_l8s14")]
+position = Vector2(161, 92)
+
+[node name="asteroid2" parent="." instance=ExtResource("3_l8s14")]
+position = Vector2(42, 60)
+
+[node name="asteroid3" parent="." instance=ExtResource("3_l8s14")]
+position = Vector2(135, 253)
