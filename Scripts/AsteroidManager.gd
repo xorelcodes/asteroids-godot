@@ -7,22 +7,20 @@ var asteroids = []
 var asteroid_template = preload("res://Scenes/Actors/asteroid.tscn")
 
 
-var screen_width
-var screen_height
-
 var rng = RandomNumberGenerator.new()
 
 func _enter_tree():
 	GameManager.spawn_init_asteroids.connect(_spawn_init_asteroids)
 
+
 func _ready():
-	#get screen height and width for later spawn calculations 
-	screen_width = get_viewport().get_visible_rect().size.x
-	screen_height = get_viewport().get_visible_rect().size.y
+	pass
 	
 
 #spawn in the initial asteroids based on the set amount of starting asteroids
 func _spawn_init_asteroids():
+	var screen_width = GameManager.screen_width
+	var screen_height = GameManager.screen_height
 	for n in number_of_starting_asteroids:
 		var new_asteroid = asteroid_template.instantiate()
 		var xRando 

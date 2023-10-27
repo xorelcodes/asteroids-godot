@@ -1,7 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://tdgyx28th8e6"]
+[gd_scene load_steps=4 format=3 uid="uid://tdgyx28th8e6"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_xf4o4"]
+[ext_resource type="PackedScene" uid="uid://e4oefy5aoot7" path="res://Scenes/Managers/AsteroidManager.tscn" id="2_cy3jh"]
+[ext_resource type="PackedScene" uid="uid://b83eve20ys1cu" path="res://Scenes/Managers/PlayerManager.tscn" id="3_7fhc3"]
 
 [node name="Game Manager" type="Node"]
 script = ExtResource("1_xf4o4")
-number_of_starting_asteroids = 5
+
+[node name="AsteroidManager" parent="." instance=ExtResource("2_cy3jh")]
+
+[node name="PlayerManager" parent="." instance=ExtResource("3_7fhc3")]

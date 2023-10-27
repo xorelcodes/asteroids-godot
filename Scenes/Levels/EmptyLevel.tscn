@@ -1,3 +1,10 @@
-[gd_scene format=3 uid="uid://ci1ccda4ivhec"]
+[gd_scene load_steps=3 format=3 uid="uid://ci1ccda4ivhec"]
+
+[ext_resource type="PackedScene" uid="uid://e4oefy5aoot7" path="res://Scenes/Managers/AsteroidManager.tscn" id="1_hcfd0"]
+[ext_resource type="PackedScene" uid="uid://b83eve20ys1cu" path="res://Scenes/Managers/PlayerManager.tscn" id="2_k5mlr"]
 
 [node name="EmptyLevel" type="Node"]
+
+[node name="AsteroidManager" parent="." instance=ExtResource("1_hcfd0")]
+
+[node name="PlayerManager" parent="." instance=ExtResource("2_k5mlr")]
