@@ -26,5 +26,6 @@ texture = ExtResource("1_4tpn5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 0)
 shape = SubResource("CircleShape2D_55l3o")
+debug_color = Color(0, 0.6, 0.701961, 0.505882)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
