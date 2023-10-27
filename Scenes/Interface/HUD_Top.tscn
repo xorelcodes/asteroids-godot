@@ -1,0 +1,117 @@
+[gd_scene load_steps=5 format=3 uid="uid://chwu4m60o3ay8"]
+
+[ext_resource type="LabelSettings" uid="uid://dnxt50qydfivh" path="res://Interface Resources/label_settings.tres" id="1_iqx11"]
+[ext_resource type="Script" path="res://Scripts/UI/HudController.gd" id="1_vm1w8"]
+[ext_resource type="Texture2D" uid="uid://nhb3tkww3365" path="res://Sprites/Player/PlayerShip1.png" id="3_3tyxh"]
+[ext_resource type="LabelSettings" uid="uid://bjlnnovufbrly" path="res://Interface Resources/label_settings_message.tres" id="4_vxhui"]
+
+[node name="HUD_Top" type="Control" node_paths=PackedStringArray("score_display", "lives_display", "respawn_display", "game_over_display", "success_display")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vm1w8")
+score_display = NodePath("HBoxContainer/Score")
+lives_display = NodePath("LifeCounter")
+respawn_display = NodePath("Message_Respawn")
+game_over_display = NodePath("Message_GameOver")
+success_display = NodePath("Message_Success")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 9.0
+offset_right = 205.0
+offset_bottom = 40.0
+
+[node name="Label_Score" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Score:"
+label_settings = ExtResource("1_iqx11")
+
+[node name="Score" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "000000"
+label_settings = ExtResource("1_iqx11")
+
+[node name="Icon_Lives" type="TextureRect" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -68.0
+offset_top = 8.0
+offset_right = -28.0
+offset_bottom = 48.0
+grow_horizontal = 0
+scale = Vector2(0.560001, 0.560001)
+texture = ExtResource("3_3tyxh")
+expand_mode = 2
+
+[node name="LifeCounter" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_top = 9.0
+offset_right = -8.0
+offset_bottom = 32.0
+grow_horizontal = 0
+text = "x3"
+label_settings = ExtResource("1_iqx11")
+
+[node name="Message_Respawn" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.0
+offset_top = 18.0
+offset_right = 156.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press Fire To respawn"
+label_settings = ExtResource("4_vxhui")
+horizontal_alignment = 1
+
+[node name="Message_GameOver" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.0
+offset_top = 4.0
+offset_right = 169.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game over
+press fire to try again"
+label_settings = ExtResource("4_vxhui")
+horizontal_alignment = 1
+
+[node name="Message_Success" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.0
+offset_top = 4.0
+offset_right = 169.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Mission Complete!
+press fire for your next mission"
+label_settings = ExtResource("4_vxhui")
+horizontal_alignment = 1

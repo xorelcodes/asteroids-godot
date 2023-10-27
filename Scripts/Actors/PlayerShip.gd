@@ -1,4 +1,4 @@
-extends RigidBody2D
+class_name  PlayerShip extends RigidBody2D
 
 signal ship_destroyed
 

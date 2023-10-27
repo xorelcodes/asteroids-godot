@@ -1,15 +1,28 @@
 extends Node
 
-@export var lives_left = 3
+@export var default_lives = 2
 @export var high_score = 1000
 
-signal spawn_player()
-signal spawn_init_asteroids()
-signal laser_hit(hit_asteroid : Asteroid)
+signal new_game_started
+signal level_over
+signal game_over_hit
+signal respawn
+signal restart_game
+signal start_next_level
+signal score_changed(new_score : String)
+signal lives_changed(new_lives : String)
 
+var current_lives = 2
 var screen_width
 var screen_height
 var total_score: int
+var dead = false
+var game_over = false
+var level_complete = false
+
+#reference to player 1. might delete this, not sure if needed or good design
+#seems bad to have in the overall game manager
+var player1
 
 var rng = RandomNumberGenerator.new()
 
@@ -19,23 +32,34 @@ func _enter_tree():
 	screen_height = get_viewport().get_visible_rect().size.y
 
 func _ready():
-	emit_signal("spawn_player")
-	emit_signal("spawn_init_asteroids")
-	pass
+	_new_game()
+	
+func _new_game():
+	emit_signal("new_game_started")
+
 
 #add to total score
-func _add_score(points : int):
+func add_score(points : int):
 	total_score += points
-	print("Total Score: " + str(total_score))
+	emit_signal("score_changed", str(total_score).pad_zeros(6))
+	#print("Total Score: " + str(total_score))
+
+func level_cleared():
+	level_complete = true
+	emit_signal("level_over")
 
 #lose a life, game over on 0 lives
-func _lose_life():
-	if(lives_left == 0):
-		#end game state entered here
-		pass
-	lives_left -= 1
-	print("Lives left: " + str(lives_left))
+func lose_life():
+	if(current_lives == 0):
+		game_over = true
+		emit_signal("game_over_hit")
+		return
+	current_lives -= 1
+	dead = true
+	emit_signal("lives_changed", "x" + str(current_lives))
 
+func ready_player1(ship : PlayerShip):
+	player1 = ship
 
 #checking for incoming object, no matter type,
 #hitting edge of screen boundaries, move it to the opposite side if so
@@ -52,4 +76,21 @@ func wrap_screen(state, buffer):
 	
 func _process(delta):
 	if(Input.is_action_just_pressed("restart")):
-		get_tree().reload_current_scene()
+		#get_tree().reload_current_scene()
+		emit_signal("start_next_level")
+	if(Input.is_action_just_pressed("fire")):
+		if(SceneManager.current_scene_type == Constants.SceneType.TITLE_SCREEN || level_complete):
+			level_complete = false
+			emit_signal("start_next_level")
+			return
+		if(game_over):
+			dead = false
+			game_over = false
+			current_lives = default_lives
+			emit_signal("restart_game")
+			return
+		if(dead):
+			dead = false
+			emit_signal("respawn")	
+			return
+		

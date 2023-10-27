@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dygn0hlppdvo"]
+
+[ext_resource type="PackedScene" uid="uid://ci1ccda4ivhec" path="res://Scenes/Levels/EmptyLevel.tscn" id="1_5iy1t"]
+[ext_resource type="PackedScene" uid="uid://vkb2hlb1byfa" path="res://Scenes/Backgrounds/bgplanet.tscn" id="2_vpurs"]
+
+[node name="EmptyLevel" instance=ExtResource("1_5iy1t")]
+
+[node name="Level1bg" parent="." index="0" instance=ExtResource("2_vpurs")]

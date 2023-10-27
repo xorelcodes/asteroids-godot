@@ -3,6 +3,9 @@ extends Node
 
 @export var number_of_starting_asteroids = 3
 
+signal all_destroyed
+signal add_score(points : int)
+
 var asteroids = []
 var asteroid_template = preload("res://Scenes/Actors/asteroid.tscn")
 
@@ -10,9 +13,11 @@ var asteroid_template = preload("res://Scenes/Actors/asteroid.tscn")
 var rng = RandomNumberGenerator.new()
 
 func _enter_tree():
-	GameManager.spawn_init_asteroids.connect(_spawn_init_asteroids)
+	SceneManager.spawn_init_asteroids.connect(_spawn_init_asteroids)
+	add_score.connect(GameManager.add_score)
 
 func _ready():
+	all_destroyed.connect(GameManager.level_cleared)
 	pass
 	
 
@@ -44,7 +49,7 @@ func _asteroid_destroyed(asteroid : Asteroid):
 			var pebble : RigidBody2D = asteroid.duplicate()
 			pebble.speed = asteroid.speed + asteroid.rng.randf_range(0,.3)
 			pebble.spawnsLeft = asteroid.spawnsLeft	
-			pebble.score = 50 if asteroid.spawnsLeft == 1 else 100
+			pebble.points = 50 if asteroid.spawnsLeft == 1 else 100
 			#this is the pain point, is score just called? or is this the sign I need an asteroid manager node?
 			pebble.asteroid_destroyed.connect(_asteroid_destroyed)
 			#fix add score connection
@@ -53,5 +58,8 @@ func _asteroid_destroyed(asteroid : Asteroid):
 			asteroids.append(pebble)
 
 	asteroids.remove_at(asteroids.find(asteroid))
+	emit_signal("add_score", asteroid.points)
+	if(asteroids.size() == 0):
+		emit_signal("all_destroyed")
 	print("Asteroids left: " + str(asteroids.size()));
 

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4nu7hb0hrpmn"]
+
+[ext_resource type="PackedScene" uid="uid://vkb2hlb1byfa" path="res://Scenes/Backgrounds/bgplanet.tscn" id="1_lbsvl"]
+[ext_resource type="PackedScene" uid="uid://bn82kqkdteey8" path="res://Scenes/Interface/MainMenu.tscn" id="2_o3ss5"]
+
+[node name="EmptyLevel" type="Node"]
+
+[node name="Level1bg" parent="." instance=ExtResource("1_lbsvl")]
+
+[node name="MainMenu" parent="." instance=ExtResource("2_o3ss5")]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj2ykj8qigboa"]
+
+[ext_resource type="PackedScene" uid="uid://ci1ccda4ivhec" path="res://Scenes/Levels/EmptyLevel.tscn" id="1_81li4"]
+[ext_resource type="PackedScene" uid="uid://lmgkcf4yvg0u" path="res://Scenes/Backgrounds/bg2planets.tscn" id="2_30w15"]
+
+[node name="EmptyLevel" instance=ExtResource("1_81li4")]
+
+[node name="Background Template" parent="." index="0" instance=ExtResource("2_30w15")]
