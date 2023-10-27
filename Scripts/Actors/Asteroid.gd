@@ -49,17 +49,5 @@ func _on_body_entered(body):
 		isDestroyed = true
 	
 func _integrate_forces(state):
-	_wrap_screen(state)
+	GameManager.wrap_screen(state, 10)
 
-func _wrap_screen(state):
-	
-	if state.transform.origin.x < -10:
-		state.transform.origin.x = get_viewport_rect().size.x + 9
-	if state.transform.origin.x > get_viewport_rect().size.x +10:
-		state.transform.origin.x = -9
-	if state.transform.origin.y < -10:
-		state.transform.origin.y = get_viewport_rect().size.y  + 9
-	if state.transform.origin.y > get_viewport_rect().size.y + 10:
-		state.transform.origin.y = -9 
-	
-	

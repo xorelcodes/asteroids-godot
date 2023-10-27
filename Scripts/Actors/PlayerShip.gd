@@ -24,6 +24,15 @@ func _physics_process(delta):
 	_isShipDestroyed()
 	#reset angular velocity to 0 for better ship handling
 	angular_velocity = 0
+	_input_handling()
+
+#check every physic frame to see if ship is destroyed, if so emit a signal that it has been destroyed, and destroy this object
+func _isShipDestroyed():
+	if ship_hit:
+		emit_signal("ship_destroyed")
+		queue_free()
+
+func _input_handling():
 	#impule forward
 	if(Input.is_action_pressed("up")):
 		apply_force(Vector2.UP.rotated(rotation) * impulse_strength)
@@ -32,29 +41,10 @@ func _physics_process(delta):
 	if(Input.is_action_pressed("left")):
 		angular_velocity = -rotation_speed
 
-#check every physic frame to see if ship is destroyed, if so emit a signal that it has been destroyed, and destroy this object
-func _isShipDestroyed():
-	if ship_hit:
-		emit_signal("ship_destroyed")
-		queue_free()
-
 #call from outside object telling the ship it is dealt damage (future could include a damage amount, ex for shields or hull health)
 func ship_damaged():
 	ship_hit = true
 
 func _integrate_forces(state):
-	_wrap_screen(state)
+	GameManager.wrap_screen(state, 3)
 
-#checking for ship hitting edge of screen boundaries, move it to the opposite side if so
-func _wrap_screen(state):
-    
-	if state.transform.origin.x < 0:
-		state.transform.origin.x = get_viewport_rect().size.x
-	if state.transform.origin.x > get_viewport_rect().size.x:
-		state.transform.origin.x = 0
-
-	if state.transform.origin.y < 0:
-		state.transform.origin.y = get_viewport_rect().size.y
-	if state.transform.origin.y > get_viewport_rect().size.y:
-		state.transform.origin.y = 0
-    

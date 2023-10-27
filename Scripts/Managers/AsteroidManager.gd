@@ -12,7 +12,6 @@ var rng = RandomNumberGenerator.new()
 func _enter_tree():
 	GameManager.spawn_init_asteroids.connect(_spawn_init_asteroids)
 
-
 func _ready():
 	pass
 	
@@ -29,10 +28,12 @@ func _spawn_init_asteroids():
 		yRando = rng.randf_range(100, screen_height / 2 -50) if rng.randi_range(0,1) ==0 else rng.randf_range(screen_height + 50, screen_height -100)
 		new_asteroid.position = Vector2(xRando, yRando)
 		new_asteroid.asteroid_destroyed.connect(_asteroid_destroyed)
+		
 		#new_asteroid.scored.connect(_add_score)
 		add_child(new_asteroid)
 		asteroids.append(new_asteroid)
 	pass
+
 
 #function called to destroy an asteroid, spawning smaller rocks if needed 
 func _asteroid_destroyed(asteroid : Asteroid):

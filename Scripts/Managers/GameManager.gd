@@ -5,16 +5,14 @@ extends Node
 
 signal spawn_player()
 signal spawn_init_asteroids()
+signal laser_hit(hit_asteroid : Asteroid)
 
-
-var player1
 var screen_width
 var screen_height
+var total_score: int
 
 var rng = RandomNumberGenerator.new()
 
-
-var total_score: int
 func _enter_tree():
 	#get screen height and width for later spawn calculations 
 	screen_width = get_viewport().get_visible_rect().size.x
@@ -39,10 +37,19 @@ func _lose_life():
 	print("Lives left: " + str(lives_left))
 
 
-
-
+#checking for incoming object, no matter type,
+#hitting edge of screen boundaries, move it to the opposite side if so
+func wrap_screen(state, buffer):
+	var spawnPoint = buffer - 1
+	if state.transform.origin.x < -buffer:
+		state.transform.origin.x = screen_width + spawnPoint
+	if state.transform.origin.x > screen_width +buffer:
+		state.transform.origin.x = -spawnPoint
+	if state.transform.origin.y < -buffer:
+		state.transform.origin.y = screen_height  + spawnPoint
+	if state.transform.origin.y > screen_height + buffer:
+		state.transform.origin.y = -spawnPoint 
+	
 func _process(delta):
 	if(Input.is_action_just_pressed("restart")):
 		get_tree().reload_current_scene()
-
-#todo: create asteroid manager maybe? what managers do I need, what is the scope in each

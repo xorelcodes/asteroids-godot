@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://1uqkm6pusndk"]
 
 [ext_resource type="Texture2D" uid="uid://nhb3tkww3365" path="res://Sprites/Player/PlayerShip1.png" id="1_gbjbl"]
-[ext_resource type="Script" path="res://Scripts/PlayerController.gd" id="1_qrj3k"]
+[ext_resource type="Script" path="res://Scripts/Actors/PlayerShip.gd" id="1_vbtsf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xff4n"]
 size = Vector2(6, 8)
@@ -9,7 +9,7 @@ size = Vector2(6, 8)
 [node name="Player" type="RigidBody2D" groups=["player"]]
 z_index = 5
 gravity_scale = 0.0
-script = ExtResource("1_qrj3k")
+script = ExtResource("1_vbtsf")
 impulse_strength = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
