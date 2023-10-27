@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://fuf8tpleh5l8"]
+
+[ext_resource type="LabelSettings" uid="uid://dnxt50qydfivh" path="res://Interface Resources/label_settings.tres" id="1_r460p"]
+[ext_resource type="LabelSettings" uid="uid://bjlnnovufbrly" path="res://Interface Resources/label_settings_message.tres" id="2_guo1i"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 65.0
+offset_right = 160.0
+offset_bottom = 88.0
+scale = Vector2(2, 2)
+text = "You win!"
+label_settings = ExtResource("1_r460p")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 165.0
+offset_right = 299.0
+offset_bottom = 188.0
+text = "press fire to start over"
+label_settings = ExtResource("2_guo1i")
+horizontal_alignment = 1

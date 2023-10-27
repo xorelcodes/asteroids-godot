@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://updx0wal0gpu"]
+
+[ext_resource type="PackedScene" uid="uid://cskl7v5ykvoip" path="res://Scenes/Backgrounds/bgempty.tscn" id="1_ejhvn"]
+[ext_resource type="PackedScene" uid="uid://fuf8tpleh5l8" path="res://Scenes/Interface/WinScreen.tscn" id="2_lvhsc"]
+
+[node name="EmptyLevel" type="Node"]
+
+[node name="Background Template" parent="." instance=ExtResource("1_ejhvn")]
+
+[node name="MainMenu" parent="." instance=ExtResource("2_lvhsc")]

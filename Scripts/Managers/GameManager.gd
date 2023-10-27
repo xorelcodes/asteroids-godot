@@ -48,6 +48,7 @@ func level_cleared():
 	level_complete = true
 	emit_signal("level_over")
 
+
 #lose a life, game over on 0 lives
 func lose_life():
 	if(current_lives == 0):
@@ -92,5 +93,12 @@ func _process(delta):
 		if(dead):
 			dead = false
 			emit_signal("respawn")	
+			return
+		if(SceneManager.current_scene_type == Constants.SceneType.CREDITS):
+			dead = false
+			game_over = false
+			current_lives = default_lives
+			total_score = 0
+			emit_signal("restart_game")
 			return
 		
