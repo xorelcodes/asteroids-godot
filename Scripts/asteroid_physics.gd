@@ -16,8 +16,10 @@ var spawnsPebbles = false
 var objWidth
 
 func _ready():
+	#set random rotation/direction the asteroid will go in
 	var rot = rng.randf_range(0, 2*PI)
 	objWidth = $Sprite2D.texture.get_width()
+	#change shape based on the stage it's in
 	if( spawnsLeft < 2):
 		$CollisionShape2D.shape.radius /= 1.2
 		$Sprite2D.scale /= 2
@@ -30,14 +32,15 @@ func _physics_process(delta):
 	_isAsteroidDestroyed()
 		
 		
+func destroyAsteroid():
+	emit_signal("scored", score)
+	isDestroyed = true
+		
 func _isAsteroidDestroyed():
 	if isDestroyed :
 		emit_signal("asteroid_destroyed", self)
 		queue_free()
 
-func destroyAsteroid():
-	emit_signal("scored", score)
-	isDestroyed = true
 
 func _on_body_entered(body):
 	if(body.is_in_group("player")):

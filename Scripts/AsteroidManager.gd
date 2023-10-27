@@ -1,52 +1,25 @@
 extends Node
 
-@export var lives_left = 3
-@export var high_score = 1000
 
-signal spawn_player()
-signal spawn_init_asteroids()
+@export var number_of_starting_asteroids = 3
 
-var player_template = preload("res://Scenes/Actors/player.tscn")
-var player1
 var asteroids = []
 var asteroid_template = preload("res://Scenes/Actors/asteroid.tscn")
+
+
 var screen_width
 var screen_height
 
 var rng = RandomNumberGenerator.new()
 
-
-var total_score: int
+func _enter_tree():
+	GameManager.spawn_init_asteroids.connect(_spawn_init_asteroids)
 
 func _ready():
 	#get screen height and width for later spawn calculations 
 	screen_width = get_viewport().get_visible_rect().size.x
 	screen_height = get_viewport().get_visible_rect().size.y
-	emit_signal("spawn_player")
-	emit_signal("spawn_init_asteroids")
-	_spawn_init_asteroids()
-	_spawn_player()
-	pass
-
-#add to total score
-func _add_score(points : int):
-	total_score += points
-	print("Total Score: " + str(total_score))
-
-#lose a life, game over on 0 lives
-func _lose_life():
-	if(lives_left == 0):
-		#end game state entered here
-		pass
-	lives_left -= 1
-	print("Lives left: " + str(lives_left))
-
-#initial spawn in of the player. Can change to include variables for multiplayer?
-func _spawn_player():
-	player1 = player_template.instantiate()
-	player1.position = Vector2(screen_width/2, screen_height/2)
-	player1.ship_destroyed.connect(_lose_life)
-	add_child(player1)
+	
 
 #spawn in the initial asteroids based on the set amount of starting asteroids
 func _spawn_init_asteroids():
@@ -58,7 +31,7 @@ func _spawn_init_asteroids():
 		yRando = rng.randf_range(100, screen_height / 2 -50) if rng.randi_range(0,1) ==0 else rng.randf_range(screen_height + 50, screen_height -100)
 		new_asteroid.position = Vector2(xRando, yRando)
 		new_asteroid.asteroid_destroyed.connect(_asteroid_destroyed)
-		new_asteroid.scored.connect(_add_score)
+		#new_asteroid.scored.connect(_add_score)
 		add_child(new_asteroid)
 		asteroids.append(new_asteroid)
 	pass
@@ -75,16 +48,11 @@ func _asteroid_destroyed(asteroid : Asteroid):
 			pebble.score = 50 if asteroid.spawnsLeft == 1 else 100
 			#this is the pain point, is score just called? or is this the sign I need an asteroid manager node?
 			pebble.asteroid_destroyed.connect(_asteroid_destroyed)
-			pebble.scored.connect(_add_score)
+			#fix add score connection
+			#pebble.scored.connect(_add_score)
 			add_child(pebble)
 			asteroids.append(pebble)
 
 	asteroids.remove_at(asteroids.find(asteroid))
 	print("Asteroids left: " + str(asteroids.size()));
 
-
-func _process(delta):
-	if(Input.is_action_just_pressed("restart")):
-		get_tree().reload_current_scene()
-
-#todo: create asteroid manager maybe? what managers do I need, what is the scope in each
