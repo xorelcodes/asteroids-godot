@@ -3,8 +3,6 @@ extends Node
 
 @export var number_of_starting_asteroids = 3
 
-signal all_destroyed
-signal add_score(points : int)
 
 var asteroids = []
 var asteroid_template = preload("res://Scenes/Actors/asteroid.tscn")
@@ -13,13 +11,13 @@ var asteroid_template = preload("res://Scenes/Actors/asteroid.tscn")
 var rng = RandomNumberGenerator.new()
 
 func _enter_tree():
-	SceneManager.spawn_init_asteroids.connect(_spawn_init_asteroids)
-	add_score.connect(GameManager.add_score)
-
+	_connect_signals()
 func _ready():
-	all_destroyed.connect(GameManager.level_cleared)
 	pass
 	
+func _connect_signals():
+	Signals.spawn_init_asteroids.connect(_spawn_init_asteroids)
+	Signals.asteroid_destroyed.connect(_asteroid_destroyed)
 
 #spawn in the initial asteroids based on the set amount of starting asteroids
 func _spawn_init_asteroids():
@@ -32,9 +30,6 @@ func _spawn_init_asteroids():
 		var yRando
 		yRando = rng.randf_range(100, screen_height / 2 -50) if rng.randi_range(0,1) ==0 else rng.randf_range(screen_height + 50, screen_height -100)
 		new_asteroid.position = Vector2(xRando, yRando)
-		new_asteroid.asteroid_destroyed.connect(_asteroid_destroyed)
-		
-		#new_asteroid.scored.connect(_add_score)
 		add_child(new_asteroid)
 		asteroids.append(new_asteroid)
 	pass
@@ -50,16 +45,12 @@ func _asteroid_destroyed(asteroid : Asteroid):
 			pebble.speed = asteroid.speed + asteroid.rng.randf_range(0,.3)
 			pebble.spawnsLeft = asteroid.spawnsLeft	
 			pebble.points = 50 if asteroid.spawnsLeft == 1 else 100
-			#this is the pain point, is score just called? or is this the sign I need an asteroid manager node?
-			pebble.asteroid_destroyed.connect(_asteroid_destroyed)
-			#fix add score connection
-			#pebble.scored.connect(_add_score)
 			add_child(pebble)
 			asteroids.append(pebble)
 
 	asteroids.remove_at(asteroids.find(asteroid))
-	emit_signal("add_score", asteroid.points)
+	Signals.emit_signal("add_score", asteroid.points)
 	if(asteroids.size() == 0):
-		emit_signal("all_destroyed")
+		Signals.emit_signal("all_destroyed")
 	print("Asteroids left: " + str(asteroids.size()));
 

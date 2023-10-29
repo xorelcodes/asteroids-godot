@@ -7,17 +7,21 @@ extends Control
 @export var success_display : Label
 
 func _enter_tree():
-	GameManager.score_changed.connect(_update_score_display)
-	GameManager.lives_changed.connect(_update_lives_display)
-	GameManager.game_over_hit.connect(_show_game_over)
-	GameManager.respawn.connect(_hide_messages)
-	SceneManager.spawn_player.connect(_hide_messages)
-	GameManager.level_over.connect(_show_next_level)
+	_connect_signals()
+
 
 func _ready():
 	lives_display.text = "x" + str(GameManager.current_lives)
 	score_display.text = str(GameManager.total_score).pad_zeros(6)
 	pass
+
+func _connect_signals():
+	Signals.score_changed.connect(_update_score_display)
+	Signals.lives_changed.connect(_update_lives_display)
+	Signals.game_over_hit.connect(_show_game_over)
+	Signals.respawn.connect(_hide_messages)
+	Signals.spawn_player.connect(_hide_messages)
+	Signals.level_over.connect(_show_next_level)
 
 func _update_score_display(new_score : String):
 	score_display.text = new_score
@@ -30,6 +34,7 @@ func _show_game_over():
 	game_over_display.visible = true
 
 func _show_next_level():
+	print("hit here")
 	success_display.visible = true
 
 func _hide_messages():

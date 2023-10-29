@@ -1,6 +1,5 @@
 class_name  PlayerShip extends RigidBody2D
 
-signal ship_destroyed
 
 @export var impulse_strength = 50
 @export var rotation_speed = TAU
@@ -11,7 +10,7 @@ var ship_hit= false
 func _ready():
 	pass
 
-func _process(delta):
+func _process(_delta):
 	#fire and instantiate a laser on each press. TODO make it so it fires if held down in intervals. Add an export variable for interval
 	if(Input.is_action_just_pressed("fire")):
 		var laser = lasers.instantiate()
@@ -19,7 +18,7 @@ func _process(delta):
 		laser.rotation = rotation
 		get_parent().add_child(laser)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	#call a check to see if ship is destroyed every physics frame 
 	_isShipDestroyed()
 	#reset angular velocity to 0 for better ship handling
@@ -29,7 +28,7 @@ func _physics_process(delta):
 #check every physic frame to see if ship is destroyed, if so emit a signal that it has been destroyed, and destroy this object
 func _isShipDestroyed():
 	if ship_hit:
-		emit_signal("ship_destroyed")
+		Signals.emit_signal("ship_destroyed")
 		queue_free()
 
 func _input_handling():

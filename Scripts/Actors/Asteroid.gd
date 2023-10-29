@@ -1,8 +1,5 @@
 class_name  Asteroid extends RigidBody2D
 
-signal pebble_spawn(new_pebble : Asteroid)
-signal asteroid_destroyed(destroyed_asteroid: Asteroid)
-
 @export var speed = 50
 @export var direction = 90
 @export var spawnsLeft = 2
@@ -25,7 +22,7 @@ func _ready():
 	rotate(rot)
 	apply_force(Vector2.UP.rotated(rotation) * speed)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	_isAsteroidDestroyed()
 			
 func destroyAsteroid():
@@ -33,7 +30,7 @@ func destroyAsteroid():
 		
 func _isAsteroidDestroyed():
 	if isDestroyed :
-		emit_signal("asteroid_destroyed", self)
+		Signals.emit_signal("asteroid_destroyed", self)
 		queue_free()
 
 func _on_body_entered(body):

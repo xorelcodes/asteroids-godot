@@ -1,7 +1,5 @@
 extends Node
 
-signal spawn_player()
-signal spawn_init_asteroids()
 
 var levels : Array[PackedScene] = []
 var default_level : int = 0
@@ -19,13 +17,14 @@ var current_scene_type = Constants.SceneType.TITLE_SCREEN
 	#pass
 
 func _enter_tree():
+	_connect_signals()
 	_add_levels()
-	GameManager.new_game_started.connect(_new_game)
-	GameManager.start_next_level.connect(_next_level)
-	GameManager.restart_game.connect(_game_over)
-	
-	
 
+
+func _connect_signals():
+	Signals.new_game_started.connect(_new_game)
+	Signals.start_next_level.connect(_next_level)
+	Signals.restart_game.connect(_game_over)
 
 func _add_levels():
 	levels.append(preload("res://Scenes/Levels/Level_Title.tscn"))
@@ -49,8 +48,8 @@ func _next_level():
 		current_scene.queue_free()
 		current_scene = levels[current_scene_id].instantiate()
 		add_child(current_scene)
-		emit_signal("spawn_player")
-		emit_signal("spawn_init_asteroids")
+		Signals.emit_signal("spawn_player")
+		Signals.emit_signal("spawn_init_asteroids")
 	#player wins if they complete all levels
 	if(current_scene_id == level_count):
 		current_scene.queue_free()
