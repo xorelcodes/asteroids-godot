@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d30uhwkxbj7os"]
+
+[ext_resource type="Script" path="res://Scripts/Actors/EnemyUFO.gd" id="1_00g77"]
+[ext_resource type="Texture2D" uid="uid://11m5q8d2wc6x" path="res://Sprites/Enemies/UFO_32x32.png" id="1_dn4kl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gj68q"]
+size = Vector2(28, 16)
+
+[node name="EnemyUFO" type="Area2D" groups=["ufo"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_00g77")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_dn4kl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gj68q")
+
+[node name="Gun" type="Sprite2D" parent="." groups=["ufo"]]
+visible = false
+modulate = Color(0, 0, 0, 0.478431)
+texture = ExtResource("1_dn4kl")

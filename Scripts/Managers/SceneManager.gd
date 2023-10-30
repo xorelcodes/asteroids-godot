@@ -12,6 +12,8 @@ var previous_scene_id = 0
 var current_scene
 var level_count = 0
 
+var infinite_level_number = 0
+
 var current_scene_type = Constants.SceneType.TITLE_SCREEN
 #func _ready():
 	#pass

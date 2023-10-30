@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ci1ccda4ivhec"]
+[gd_scene load_steps=5 format=3 uid="uid://ci1ccda4ivhec"]
 
 [ext_resource type="PackedScene" uid="uid://chwu4m60o3ay8" path="res://Scenes/Interface/HUD_Top.tscn" id="1_6aygb"]
 [ext_resource type="PackedScene" uid="uid://e4oefy5aoot7" path="res://Scenes/Managers/AsteroidManager.tscn" id="1_hcfd0"]
 [ext_resource type="PackedScene" uid="uid://b83eve20ys1cu" path="res://Scenes/Managers/PlayerManager.tscn" id="2_k5mlr"]
+[ext_resource type="PackedScene" uid="uid://d30uhwkxbj7os" path="res://Scenes/Actors/EnemyUFO.tscn" id="4_yfjp4"]
 
 [node name="EmptyLevel" type="Node"]
 
@@ -11,3 +12,6 @@
 [node name="PlayerManager" parent="." instance=ExtResource("2_k5mlr")]
 
 [node name="HUD_Top" parent="." instance=ExtResource("1_6aygb")]
+
+[node name="EnemyUFO" parent="." instance=ExtResource("4_yfjp4")]
+position = Vector2(101, 102)

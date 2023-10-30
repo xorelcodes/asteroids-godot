@@ -27,3 +27,7 @@ signal add_score(points : int)
 
 #PlayerManager
 signal player1_spawned(player : PlayerShip)
+signal player1_position(location : Vector2)
+
+#EnemyUFO
+signal ufo_spawned

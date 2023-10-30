@@ -4,6 +4,9 @@ class_name PlayerManager extends Node
 var player_template = preload("res://Scenes/Actors/player.tscn")
 var player1
 
+func _process(_delta):
+	pass
+
 func _enter_tree():
 	Signals.spawn_player.connect(_spawn_player)
 	Signals.respawn.connect(_spawn_player)

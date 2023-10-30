@@ -6,17 +6,26 @@ class_name  PlayerShip extends RigidBody2D
 
 var lasers = preload("res://Scenes/Actors/laser.tscn")
 var ship_hit= false
+var fire_delay = 4.5
+var current_fire_delay = 0
 
 func _ready():
 	pass
 
 func _process(_delta):
+	
+	Signals.emit_signal("player1_position", position)
+
+	if(current_fire_delay >0):
+		current_fire_delay -= .1
 	#fire and instantiate a laser on each press. TODO make it so it fires if held down in intervals. Add an export variable for interval
-	if(Input.is_action_just_pressed("fire")):
+	if(Input.is_action_pressed("fire") && current_fire_delay <= 0):
 		var laser = lasers.instantiate()
 		laser.position = position
 		laser.rotation = rotation
 		get_parent().add_child(laser)
+		current_fire_delay = fire_delay
+		
 
 func _physics_process(_delta):
 	#call a check to see if ship is destroyed every physics frame 

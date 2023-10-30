@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct7ama3cirmuj"]
+
+[ext_resource type="PackedScene" uid="uid://ieywgl8cf261" path="res://Scenes/Actors/laser.tscn" id="1_4g6fy"]
+[ext_resource type="Script" path="res://Scripts/Actors/EnemyLaser.gd" id="2_s84li"]
+
+[node name="laser" instance=ExtResource("1_4g6fy")]
+collision_layer = 1
+collision_mask = 1
+script = ExtResource("2_s84li")
+speed = 50
+
+[node name="Laser" parent="." index="0"]
+rotation = 1.5708
+
+[node name="CollisionShape2D" parent="." index="1"]
+rotation = 1.5708
