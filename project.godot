@@ -21,6 +21,7 @@ Signals="*res://Scripts/Data/Signals.gd"
 Constants="*res://Scripts/Data/Constants.gd"
 GameManager="*res://Scripts/Managers/GameManager.gd"
 SceneManager="*res://Scripts/Managers/SceneManager.gd"
+EnemyManager="*res://Scripts/Managers/EnemyManager.gd"
 
 [display]
 

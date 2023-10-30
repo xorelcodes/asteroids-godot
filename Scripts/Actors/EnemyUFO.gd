@@ -1,4 +1,4 @@
-extends Area2D
+class_name EnemyUFO extends Area2D
 
 var player_reference
 var gun
@@ -22,7 +22,7 @@ func _enter_tree():
 
 func _ready():
 	gun = get_node("Gun")
-	position = Vector2(-15, GameManager.screen_height/2)
+
 	height_distance = GameManager.screen_height / 4
 
 func _connect_signals():
@@ -32,6 +32,7 @@ func _connect_signals():
 	
 
 func _process(_delta):
+	print(player_reference)
 	if(position.x > GameManager.screen_width + 5 || is_destroyed):
 		queue_free()
 
