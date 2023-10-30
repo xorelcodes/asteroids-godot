@@ -5,7 +5,7 @@ var gun
 var player_alive = false
 var score = 200
 var lasers = preload("res://Scenes/Actors/UFOLaser.tscn")
-var fire_delay = 10
+var fire_delay = 20
 var current_fire_delay = 0
 var initial_spawn_posion : Vector2
 var height_distance = 0

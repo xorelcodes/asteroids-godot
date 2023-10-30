@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://ci1ccda4ivhec"]
+[gd_scene load_steps=6 format=3 uid="uid://ci1ccda4ivhec"]
 
 [ext_resource type="PackedScene" uid="uid://chwu4m60o3ay8" path="res://Scenes/Interface/HUD_Top.tscn" id="1_6aygb"]
+[ext_resource type="Shader" path="res://Shaders/GameBoy.gdshader" id="1_066mw"]
 [ext_resource type="PackedScene" uid="uid://e4oefy5aoot7" path="res://Scenes/Managers/AsteroidManager.tscn" id="1_hcfd0"]
 [ext_resource type="PackedScene" uid="uid://b83eve20ys1cu" path="res://Scenes/Managers/PlayerManager.tscn" id="2_k5mlr"]
-[ext_resource type="PackedScene" uid="uid://d30uhwkxbj7os" path="res://Scenes/Actors/EnemyUFO.tscn" id="4_yfjp4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jp22t"]
+shader = ExtResource("1_066mw")
+shader_parameter/overlay = true
+shader_parameter/crt_curve = 0.015
+shader_parameter/crt_scan_line_color = 0.347
+shader_parameter/aperture_grille_rate = 0.743
+shader_parameter/rf_switch_esque_blur = 0.41
+shader_parameter/white_noise_rate = 0.0
 
 [node name="EmptyLevel" type="Node"]
 
@@ -12,6 +21,13 @@
 [node name="PlayerManager" parent="." instance=ExtResource("2_k5mlr")]
 
 [node name="HUD_Top" parent="." instance=ExtResource("1_6aygb")]
+show_behind_parent = true
 
-[node name="EnemyUFO" parent="." instance=ExtResource("4_yfjp4")]
-position = Vector2(101, 102)
+[node name="ColorRect" type="ColorRect" parent="."]
+show_behind_parent = true
+clip_children = 2
+z_index = 50
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_jp22t")
+offset_right = 321.0
+offset_bottom = 289.0

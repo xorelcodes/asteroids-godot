@@ -1,9 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4nu7hb0hrpmn"]
+[gd_scene load_steps=5 format=3 uid="uid://c4nu7hb0hrpmn"]
 
 [ext_resource type="PackedScene" uid="uid://vkb2hlb1byfa" path="res://Scenes/Backgrounds/bgplanet.tscn" id="1_lbsvl"]
+[ext_resource type="Shader" path="res://Shaders/GameBoy.gdshader" id="2_4jqvx"]
 [ext_resource type="PackedScene" uid="uid://bn82kqkdteey8" path="res://Scenes/Interface/MainMenu.tscn" id="2_o3ss5"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jp22t"]
+shader = ExtResource("2_4jqvx")
+shader_parameter/overlay = true
+shader_parameter/crt_curve = 0.015
+shader_parameter/crt_scan_line_color = 0.347
+shader_parameter/aperture_grille_rate = 0.743
+shader_parameter/rf_switch_esque_blur = 0.41
+shader_parameter/white_noise_rate = 0.0
+
 [node name="EmptyLevel" type="Node"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+show_behind_parent = true
+z_index = 1
+material = SubResource("ShaderMaterial_jp22t")
+offset_right = 321.0
+offset_bottom = 289.0
 
 [node name="Level1bg" parent="." instance=ExtResource("1_lbsvl")]
 

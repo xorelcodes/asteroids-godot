@@ -76,6 +76,18 @@ func wrap_screen(state, buffer):
 		state.transform.origin.y = screen_height  + spawnPoint
 	if state.transform.origin.y > screen_height + buffer:
 		state.transform.origin.y = -spawnPoint 
+
+func wrap_screen_projectile(projectile, buffer):
+	var spawnPoint = buffer - 1
+	if projectile.transform.origin.x < -buffer:
+		projectile.transform.origin.x = screen_width + spawnPoint
+	if projectile.transform.origin.x > screen_width +buffer:
+		projectile.transform.origin.x = -spawnPoint
+	if projectile.transform.origin.y < -buffer:
+		projectile.transform.origin.y = screen_height  + spawnPoint
+	if projectile.transform.origin.y > screen_height + buffer:
+		projectile.transform.origin.y = -spawnPoint 
+
 	
 func _process(_delta):
 	if(Input.is_action_just_pressed("restart")):

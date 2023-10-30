@@ -6,7 +6,7 @@ class_name  PlayerShip extends RigidBody2D
 
 var lasers = preload("res://Scenes/Actors/laser.tscn")
 var ship_hit= false
-var fire_delay = 4.5
+var fire_delay = 3.5
 var current_fire_delay = 0
 
 func _ready():

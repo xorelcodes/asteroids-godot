@@ -7,6 +7,7 @@
 size = Vector2(28, 16)
 
 [node name="EnemyUFO" type="Area2D" groups=["ufo"]]
+scale = Vector2(0.75, 0.75)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_00g77")
