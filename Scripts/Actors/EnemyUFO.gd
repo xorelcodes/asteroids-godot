@@ -65,6 +65,8 @@ func _move_horizontal():
 	position.x += .25
 	pass
 
+func despawn():
+	is_destroyed = true
 
 func _target_lost():
 	player_alive = false

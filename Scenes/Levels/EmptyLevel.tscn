@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ci1ccda4ivhec"]
+[gd_scene load_steps=6 format=3 uid="uid://2xiy35hl8mws"]
 
 [ext_resource type="PackedScene" uid="uid://chwu4m60o3ay8" path="res://Scenes/Interface/HUD_Top.tscn" id="1_6aygb"]
 [ext_resource type="Shader" path="res://Shaders/GameBoy.gdshader" id="1_066mw"]
@@ -8,7 +8,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jp22t"]
 shader = ExtResource("1_066mw")
 shader_parameter/overlay = true
-shader_parameter/crt_curve = 0.015
+shader_parameter/crt_curve = 0.0
 shader_parameter/crt_scan_line_color = 0.347
 shader_parameter/aperture_grille_rate = 0.743
 shader_parameter/rf_switch_esque_blur = 0.41

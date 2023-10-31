@@ -4,7 +4,7 @@
 
 [resource]
 font = ExtResource("1_g7pd2")
-font_color = Color(0.188235, 0.384314, 0.188235, 1)
-outline_color = Color(0.607843, 0.737255, 0.0588235, 1)
+font_color = Color(0.0588235, 0.219608, 0.0588235, 1)
+outline_color = Color(0.188235, 0.384314, 0.188235, 1)
 shadow_size = 4
-shadow_color = Color(0.607843, 0.737255, 0.0588235, 1)
+shadow_color = Color(0.188235, 0.384314, 0.188235, 1)
