@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://chm0nyqjmahhl"]
 
 [ext_resource type="Script" path="res://Scripts/Actors/Asteroid.gd" id="1_fescs"]
-[ext_resource type="Texture2D" uid="uid://bdpjl6q4ir051" path="res://Sprites/Asteroids/RoundBoi2_32x32.png" id="2_oxwi7"]
+[ext_resource type="Texture2D" uid="uid://c52m2rdo32ukt" path="res://Sprites/Asteroids/Asteroid2_64x64.png" id="2_mpkt1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_55l3o"]
 resource_local_to_scene = true
@@ -20,8 +20,8 @@ script = ExtResource("1_fescs")
 speed = 2000
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.06, 1.06)
-texture = ExtResource("2_oxwi7")
+scale = Vector2(0.42, 0.42)
+texture = ExtResource("2_mpkt1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)

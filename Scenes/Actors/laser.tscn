@@ -13,7 +13,7 @@ script = ExtResource("1_00vb1")
 speed = 250
 
 [node name="Laser" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.75)
+scale = Vector2(0.5, 0.75)
 texture = ExtResource("2_ucysl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

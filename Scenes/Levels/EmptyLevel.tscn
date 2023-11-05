@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://2xiy35hl8mws"]
+[gd_scene load_steps=6 format=3 uid="uid://ci1ccda4ivhec"]
 
 [ext_resource type="PackedScene" uid="uid://chwu4m60o3ay8" path="res://Scenes/Interface/HUD_Top.tscn" id="1_6aygb"]
 [ext_resource type="Shader" path="res://Shaders/GameBoy.gdshader" id="1_066mw"]
@@ -24,6 +24,7 @@ shader_parameter/white_noise_rate = 0.0
 show_behind_parent = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 show_behind_parent = true
 clip_children = 2
 z_index = 50

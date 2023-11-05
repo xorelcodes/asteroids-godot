@@ -7,7 +7,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jp22t"]
 shader = ExtResource("2_4jqvx")
 shader_parameter/overlay = true
-shader_parameter/crt_curve = 0.015
+shader_parameter/crt_curve = 0.0
 shader_parameter/crt_scan_line_color = 0.347
 shader_parameter/aperture_grille_rate = 0.743
 shader_parameter/rf_switch_esque_blur = 0.41
@@ -16,6 +16,7 @@ shader_parameter/white_noise_rate = 0.0
 [node name="EmptyLevel" type="Node"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 show_behind_parent = true
 z_index = 1
 material = SubResource("ShaderMaterial_jp22t")
