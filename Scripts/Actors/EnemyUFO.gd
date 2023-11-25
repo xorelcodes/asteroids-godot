@@ -35,6 +35,7 @@ func _process(_delta):
 	print(player_reference)
 	if(position.x > GameManager.screen_width + 5 || is_destroyed):
 		queue_free()
+		Signals.emit_signal("enemy_destroyed", self)
 
 	if(current_fire_delay >0):
 		current_fire_delay -= .1
@@ -80,4 +81,3 @@ func _follow_on_target(position : Vector2):
 
 func ship_hit():
 	is_destroyed = true
-	Signals.emit_signal("add_score", score)

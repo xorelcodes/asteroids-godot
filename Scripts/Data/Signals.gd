@@ -31,6 +31,7 @@ signal player1_position(location : Vector2)
 
 #EnemyUFO
 signal ufo_spawned
+signal enemy_destroyed(destroyed_enemy: EnemyUFO)
 
 #EnemyManager
 signal enemy_spawn_timer_hit
