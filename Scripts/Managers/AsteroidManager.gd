@@ -1,9 +1,5 @@
 extends Node
 
-
-@export var number_of_starting_asteroids = 3
-
-
 var asteroids = []
 var asteroid_template = preload("res://Scenes/Actors/asteroid.tscn")
 
@@ -23,7 +19,7 @@ func _connect_signals():
 func _spawn_init_asteroids():
 	var screen_width = GameManager.screen_width
 	var screen_height = GameManager.screen_height
-	for n in number_of_starting_asteroids:
+	for n in GameManager.current_asteroids_spawn:
 		var new_asteroid = asteroid_template.instantiate()
 		var xRando 
 		xRando = rng.randf_range(100, screen_width / 2 -50) if rng.randi_range(0,1) ==0 else rng.randf_range(screen_width + 50, screen_width  -100)

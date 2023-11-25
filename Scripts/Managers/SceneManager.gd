@@ -46,18 +46,13 @@ func _next_level():
 	previous_scene_id = current_scene_id
 	current_scene_id += 1
 	current_scene_type = Constants.SceneType.GAME_SCREEN
-	if(current_scene_id < level_count):
-		current_scene.queue_free()
-		current_scene = levels[current_scene_id].instantiate()
-		add_child(current_scene)
-		Signals.emit_signal("spawn_player")
-		Signals.emit_signal("spawn_init_asteroids")
-	#player wins if they complete all levels
-	if(current_scene_id == level_count):
-		current_scene.queue_free()
-		current_scene = win_screen.instantiate()
-		add_child(current_scene)
-		current_scene_type = Constants.SceneType.CREDITS
+	current_scene.queue_free()
+	current_scene = preload("res://Scenes/Levels/Level_1.tscn").instantiate()
+	add_child(current_scene)
+	Signals.emit_signal("spawn_player")
+	Signals.emit_signal("spawn_init_asteroids")
+
+	
 
 func _game_over():
 	current_scene.queue_free()

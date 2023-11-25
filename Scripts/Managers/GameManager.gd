@@ -4,6 +4,9 @@ extends Node
 @export var high_score = 1000
 
 var current_lives = 2
+var current_level = 1
+var number_of_starting_asteroids = 3
+var current_asteroids_spawn = number_of_starting_asteroids
 var screen_width
 var screen_height
 var total_score: int
@@ -39,6 +42,8 @@ func _new_game():
 func _clear_score_lives():
 	current_lives = default_lives
 	total_score = 0
+	current_level = 1
+	current_asteroids_spawn = number_of_starting_asteroids
 
 #add to total score
 func add_score(points : int):
@@ -48,13 +53,18 @@ func add_score(points : int):
 
 func level_cleared():
 	level_complete = true
+	current_level += 1
+	if(current_level % 2 == 0):
+		current_asteroids_spawn +=1
 	Signals.emit_signal("level_over")
+
 
 
 #lose a life, game over on 0 lives
 func lose_life():
 	if(current_lives == 0):
 		game_over = true
+		_clear_score_lives()
 		Signals.emit_signal("game_over_hit")
 		return
 	current_lives -= 1
@@ -96,6 +106,7 @@ func _process(_delta):
 	if(Input.is_action_just_pressed("fire")):
 		if(SceneManager.current_scene_type == Constants.SceneType.TITLE_SCREEN || level_complete):
 			level_complete = false
+			print("STARTING GAME BUTTON FIRE HIT OMG")
 			Signals.emit_signal("start_next_level")
 			return
 		if(game_over):
