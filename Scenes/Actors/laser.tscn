@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ieywgl8cf261"]
+[gd_scene load_steps=5 format=3 uid="uid://ieywgl8cf261"]
 
 [ext_resource type="Script" path="res://Scripts/Actors/Laser.gd" id="1_00vb1"]
 [ext_resource type="Texture2D" uid="uid://cit0xqtk2ucbx" path="res://Sprites/Projectiles/Laser1.png" id="2_ucysl"]
+[ext_resource type="AudioStream" uid="uid://qaqcruvto6ph" path="res://Sounds/Lasers/Laser_shoot 12.wav" id="3_6bg8i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oxjm6"]
 size = Vector2(2, 6)
@@ -23,6 +24,11 @@ shape = SubResource("RectangleShape2D_oxjm6")
 wait_time = 0.75
 one_shot = true
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6bg8i")
+pitch_scale = 1.2
+autoplay = true
 
 [connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

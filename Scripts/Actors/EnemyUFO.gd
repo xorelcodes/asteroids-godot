@@ -7,6 +7,7 @@ var score = 200
 var lasers = preload("res://Scenes/Actors/UFOLaser.tscn")
 var fire_delay = 20
 var current_fire_delay = 0
+var initial_fire_delay = 0
 var initial_spawn_posion : Vector2
 var height_distance = 0
 var vertical_speed = .30
@@ -30,7 +31,6 @@ func _connect_signals():
 	Signals.player1_spawned.connect(_target_acquired)
 	Signals.ship_destroyed.connect(_target_lost)
 	
-
 func _process(_delta):
 	print(player_reference)
 	if(position.x > GameManager.screen_width + 5 || is_destroyed):
@@ -46,13 +46,17 @@ func _process(_delta):
 	current_fire_delay -=.1
 	if(player_reference != null && player_alive):
 		if(current_fire_delay <= 0):
-			gun.look_at(player_reference)
-			var laser = lasers.instantiate()
-			laser.position = position
-			laser.rotation = gun.rotation
-			get_parent().add_child(laser)
-			current_fire_delay = fire_delay
+			_fire_laser();
+			
 
+func _fire_laser():
+	gun.look_at(player_reference)
+	var laser = lasers.instantiate()
+	laser.position = position
+	laser.rotation = gun.rotation
+	get_parent().add_child(laser)
+	current_fire_delay = fire_delay
+	
 func _move_vertical():
 	position.y += vertical_speed
 	if(current_direction_timer >0):
